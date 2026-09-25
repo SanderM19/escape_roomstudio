@@ -43,3 +43,38 @@ def _pyramide():
     for p in (p1, p2, p3):
         room.voeg_puzzel_toe(p)
     return room
+
+def _onderzeeer():
+    room = EscapeRoom("De Verzonken Onderzeeer", "Onderzeeër in nood", 45)
+
+    p1 = Puzzel(
+        "SOS in morse",
+        "De radio piept: ... --- ... . Wat is het internationale noodsignaal "
+        "(drie letters) dat hierbij hoort?",
+        "SOS",
+        90,
+    )
+    p1.voeg_hint_toe(Hint("Drie korte, drie lange, drie korte tonen.", 15))
+
+    p2 = Puzzel(
+        "Ballasttanks",
+        "Om te stijgen moet lucht in de tanks. Typ het woord voor het naar boven "
+        "komen van de onderzeeer.",
+        "opstijgen",
+        70,
+    )
+    p2.voeg_hint_toe(Hint("Het tegenovergestelde van duiken.", 10))
+    p2.voeg_hint_toe(Hint("Het werkwoord begint met 'op'.", 20))
+
+    p3 = Puzzel(
+        "De dieptemeter",
+        "De meter staat op 200 meter. Per minuut stijg je 25 meter. Na hoeveel "
+        "minuten ben je aan het oppervlak (0 meter)?",
+        "8",
+        110,
+    )
+    p3.voeg_hint_toe(Hint("Deel de diepte door de stijgsnelheid.", 15))
+
+    for p in (p1, p2, p3):
+        room.voeg_puzzel_toe(p)
+    return room
