@@ -113,3 +113,7 @@ def _spookkasteel():
     for p in (p1, p2, p3):
         room.voeg_puzzel_toe(p)
     return room
+
+def bouw_catalogus():
+    """Bouw en retourneer de lijst met standaard escape rooms."""
+    return [_pyramide(), _onderzeeer(), _spookkasteel()]
