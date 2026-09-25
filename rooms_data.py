@@ -78,3 +78,38 @@ def _onderzeeer():
     for p in (p1, p2, p3):
         room.voeg_puzzel_toe(p)
     return room
+
+def _spookkasteel():
+    room = EscapeRoom("Het Spookkasteel", "Gothic horror", 50)
+
+    p1 = Puzzel(
+        "De tikkende klok",
+        "De spookklok in de hal wijst middernacht aan. Hoeveel keer slaat een "
+        "klok om 12 uur 's nachts?",
+        "12",
+        80,
+    )
+    p1.voeg_hint_toe(Hint("Een klok slaat evenveel keer als het uur.", 10))
+
+    p2 = Puzzel(
+        "Het grafschrift",
+        "Op de grafsteen staat: 'Ik ben zwart als de nacht en ik jaag geluidloos'. "
+        "Welk nachtdier wordt bedoeld (denk aan een roofvogel)?",
+        "uil",
+        100,
+    )
+    p2.voeg_hint_toe(Hint("Het draait zijn kop bijna helemaal rond.", 15))
+    p2.voeg_hint_toe(Hint("Het zegt 'oehoe'.", 25))
+
+    p3 = Puzzel(
+        "De geheime bibliotheek",
+        "Trek een boek uit de kast. Het codewoord is het aantal letters in het "
+        "woord 'SPOOK'. Typ dat getal.",
+        "5",
+        60,
+    )
+    p3.voeg_hint_toe(Hint("Tel letter voor letter: S-P-O-O-K.", 10))
+
+    for p in (p1, p2, p3):
+        room.voeg_puzzel_toe(p)
+    return room
