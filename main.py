@@ -45,5 +45,19 @@ def toon_hoofdmenu():
     print("1. Catalogus bekijken")
     print("2. Afsluiten")
 
+def main():
+    print("Welkom bij de Escape-roomstudio!")
+    rooms = bouw_catalogus()
+    while True:
+        toon_hoofdmenu()
+        keuze = input("Maak een keuze (1-2): ").strip()
+        if keuze == "1":
+            catalogusmodus(rooms)
+        elif keuze == "2":
+            print("Tot ziens!")
+            break
+        else:
+            print("Ongeldige keuze. Kies 1 of 2.")
+
 if __name__ == "__main__":
-    main()
+    main() 
