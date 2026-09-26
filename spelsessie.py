@@ -40,7 +40,7 @@ class Spelsessie:
             return True
         return False
 
-def vraag_hint(self):
+    def vraag_hint(self):
         """Geef de eerstvolgende ongebruikte hint van de huidige puzzel.
 
         Retourneert de Hint, of None als er geen ongebruikte hint meer is.
@@ -55,3 +55,5 @@ def vraag_hint(self):
             return None
         self.gebruikte_hints[index] = gebruikt + 1
         return hint
+
+    
