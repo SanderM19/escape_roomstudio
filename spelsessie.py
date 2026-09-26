@@ -39,3 +39,19 @@ class Spelsessie:
             self.huidige_puzzel_index += 1
             return True
         return False
+
+def vraag_hint(self):
+        """Geef de eerstvolgende ongebruikte hint van de huidige puzzel.
+
+        Retourneert de Hint, of None als er geen ongebruikte hint meer is.
+        """
+        puzzel = self.get_huidige_puzzel()
+        if puzzel is None:
+            return None
+        index = self.huidige_puzzel_index
+        gebruikt = self._aantal_gebruikte_hints(index)
+        hint = puzzel.get_hint(gebruikt)
+        if hint is None:
+            return None
+        self.gebruikte_hints[index] = gebruikt + 1
+        return hint
