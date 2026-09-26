@@ -56,4 +56,21 @@ class Spelsessie:
         self.gebruikte_hints[index] = gebruikt + 1
         return hint
 
-    
+    def get_voortgang(self):
+        """Voortgang als fractie tussen 0.0 en 1.0."""
+        totaal = self.escape_room.get_aantal_puzzels()
+        if totaal == 0:
+            return 1.0
+        return self.huidige_puzzel_index / totaal
+
+    def get_voortgang_procent(self):
+        return round(self.get_voortgang() * 100)
+
+    def is_afgerond(self):
+        return self.huidige_puzzel_index >= self.escape_room.get_aantal_puzzels()
+
+    def __str__(self):
+        return (
+            f"Team '{self.teamnaam}' speelt '{self.escape_room.get_naam()}' | "
+            f"Score: {self.score} | Voortgang: {self.get_voortgang_procent()}%"
+        )
