@@ -14,7 +14,7 @@ def _pyramide():
 
     p1 = Puzzel(
         "De vervloekte hieroglief",
-        "Op de muur staan symbolen voor de zon (RA). Typ de naam van de "
+        "Op de muur staan symbolen voor de zon. Typ de naam van de "
         "Egyptische zonnegod die bij het zonsymbool hoort.",
         "Ra",
         100,
@@ -43,6 +43,7 @@ def _pyramide():
     for p in (p1, p2, p3):
         room.voeg_puzzel_toe(p)
     return room
+
 
 def _onderzeeer():
     room = EscapeRoom("De Verzonken Onderzeeer", "Onderzeeër in nood", 45)
@@ -79,6 +80,7 @@ def _onderzeeer():
         room.voeg_puzzel_toe(p)
     return room
 
+
 def _spookkasteel():
     room = EscapeRoom("Het Spookkasteel", "Gothic horror", 50)
 
@@ -113,6 +115,7 @@ def _spookkasteel():
     for p in (p1, p2, p3):
         room.voeg_puzzel_toe(p)
     return room
+
 
 def bouw_catalogus():
     """Bouw en retourneer de lijst met standaard escape rooms."""
