@@ -1,0 +1,293 @@
+-------
+7591924 2026-
+09-27 22:44 [SanderM19] | Merge branch 'main' of https://github.com/SanderM19/escape_roomstudio
+
+-------
+7ca072d 2026-
+09-27 22:44 [Sander Mik] | Create README
+
+In deze README heb ik een introductie geschreven waar het project over gaat. Denk dan aan de requirements, de structuur en de globale inhoud van de code.
+ README.md | 81 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
+
+-------
+89da46a 2026-
+09-27 22:04 [SanderM19] | main.py geüpdate
+
+Alles in de main.py gezet om het zo compleet te maken
+
+ main.py | 34 ++++++++++++++++++++++++++++------
+ 1 file changed, 28 insertions(+), 6 deletions(-)
+
+-------
+5fbde78 2026-
+09-27 20:20 [SanderM19] | afgemaakt van rapport.py
+
+Puzzeloverzicht en eindscore-blok toegevoegd
+
+ rapport.py | 44 +++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 43 insertions(+), 1 deletion(-)
+
+-------
+f0ce25b 2026-
+09-27 18:46 [SanderM19] | geüpdate van rapport.py
+
+de kop / certificaat banner toegevoegd
+
+ rapport.py | 24 +++++++++++++++++++++++-
+ 1 file changed, 23 insertions(+), 1 deletion(-)
+
+-------
+8707e8d 2026-
+09-27 17:56 [SanderM19] | Geüpdate van rapport.py
+
+Reportlab geïmplementeerd en de eerste def aangemaakt
+
+ .vscode/settings.json |  3 +++
+ rapport.py            | 23 +++++++++++++++++++++++
+ 2 files changed, 26 insertions(+)
+
+-------
+3386740 2026-
+09-27 17:26 [SanderM19] | geüpdate database.py
+
+laatste 3 def;s erin gezet. Zorgt ervoor dat de score wordt bewaart en kan worden geladen.
+
+ database.py | 31 ++++++++++++++++++++++++++++++-
+ 1 file changed, 30 insertions(+), 1 deletion(-)
+
+-------
+f6d5f65 2026-
+09-27 15:37 [SanderM19] | geüpdate database.py
+
+2 def's toegevoegd. 1 die de rooms bewaart. En een grotere def die alle rooms kan gaan laden
+
+ database.py | 33 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 32 insertions(+), 1 deletion(-)
+
+-------
+047a1e4 2026-
+09-27 14:42 [SanderM19] | geüpdate database.py
+
+1 def toegevoegd
+
+ database.py | 30 +++++++++++++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
+
+-------
+c36f10e 2026-
+09-27 13:46 [SanderM19] | 2 .py bestanden aangemaakt
+
+1ste deel van database.py aangemaakt en 2 def's toegevoegd
+
+ database.py | 58 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ rapport.py  |  0
+ 2 files changed, 58 insertions(+)
+
+-------
+f9f3f68 2026-
+09-27 12:51 [SanderM19] | FR's weggehaald
+
+Zelf erbij gezet, overzichtelijk. Nu weggehaald, voor de bijna eindoplevering
+
+ main.py      | 12 ++++++------
+ ontwerp.py   |  2 +-
+ puzzel.py    |  2 +-
+ speelloop.py |  2 +-
+ 4 files changed, 9 insertions(+), 9 deletions(-)
+
+-------
+6873918 2026-
+09-27 12:35 [SanderM19] | herschrijven van main.py
+
+De main.py herschreven op basis van de toegevoegde .py bestanden en/of de geüpdate .py bestanden
+
+ main.py | 95 +++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 48 insertions(+), 47 deletions(-)
+
+-------
+ac53c4c 2026-
+09-27 11:44 [SanderM19] | ontwerp.py afgemaakt
+
+2 def's toegevoegd
+
+ ontwerp.py | 47 ++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 46 insertions(+), 1 deletion(-)
+
+-------
+39adf68 2026-
+09-27 09:48 [SanderM19] | ontwerp.py update
+
+implementeer ontwerpmodus voor rooms met validatie (FR-6)
+
+ ontwerp.py | 38 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 37 insertions(+), 1 deletion(-)
+
+-------
+779598f 2026-
+09-27 00:13 [SanderM19] | ontwerp.py aangemaakt
+
+ ontwerp.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+-------
+c930853 2026-
+09-27 00:11 [SanderM19] | Speelloop.py toegevoegd
+
+ speelloop.py | 46 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+
+-------
+d2b6a26 2026-
+09-26 23:11 [SanderM19] | speelloop.py aangemaakt
+
+ speelloop.py | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+-------
+1120d97 2026-
+09-26 23:11 [SanderM19] | score_resultaat.py gemaakt
+
+ __pycache__/escape_room.cpython-314.pyc | Bin 2070 -> 0 bytes
+ __pycache__/hint.cpython-314.pyc        | Bin 1253 -> 0 bytes
+ __pycache__/puzzel.cpython-314.pyc      | Bin 3326 -> 0 bytes
+ __pycache__/rooms_data.cpython-314.pyc  | Bin 4709 -> 0 bytes
+ __pycache__/spelsessie.cpython-314.pyc  | Bin 4255 -> 0 bytes
+ score_resultaat.py                      |  13 +++++++++++++
+ 6 files changed, 13 insertions(+)
+
+-------
+678e17b 2026-
+09-26 21:54 [SanderM19] | uitbreiden van de main.py
+
+ __pycache__/escape_room.cpython-314.pyc | Bin 0 -> 2070 bytes
+ __pycache__/hint.cpython-314.pyc        | Bin 0 -> 1253 bytes
+ __pycache__/puzzel.cpython-314.pyc      | Bin 0 -> 3326 bytes
+ __pycache__/rooms_data.cpython-314.pyc  | Bin 0 -> 4709 bytes
+ __pycache__/spelsessie.cpython-314.pyc  | Bin 0 -> 4255 bytes
+ main.py                                 |  71 +++++++++++++++++++++++++++++---
+ rooms_data.py                           |   5 ++-
+ 7 files changed, 70 insertions(+), 6 deletions(-)
+
+-------
+7f2f9c2 2026-
+09-26 18:33 [SanderM19] | laatste def's toegevoegd aan spelsessie.py
+
+ spelsessie.py | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+-------
+c0084d5 2026-
+09-26 17:24 [SanderM19] | update
+
+ spelsessie.py | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+-------
+bd88a9a 2026-
+09-26 12:26 [SanderM19] | hint toegevoegd aan spelsessie.py
+
+ spelsessie.py | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+-------
+3cbee2c 2026-
+09-26 09:19 [SanderM19] | begin van spelsessie.py met def geef_functie
+
+ spelsessie.py | 41 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+-------
+b1bcd1a 2026-
+09-26 00:00 [SanderM19] | spelsessie.py toegevoegd
+
+ spelsessie.py | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+-------
+cdcc81a 2026-
+09-25 23:58 [SanderM19] | puzzel uitgebreid met controleer_oplossing, get_hint, bereken_punten
+
+ puzzel.py | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+-------
+432b44c 2026-
+09-25 21:32 [SanderM19] | de def main toegevoegd
+
+ main.py | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+-------
+81ea275 2026-
+09-25 19:22 [SanderM19] | 2 def's toegevoegd in main.py + main()
+
+ main.py | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+-------
+96123f0 2026-
+09-25 18:54 [SanderM19] | 2 def's in main.py
+
+ main.py | 26 ++++++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
+
+-------
+d46fa87 2026-
+09-25 17:38 [SanderM19] | begin van de main.py
+
+ main.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+-------
+e90b282 2026-
+09-25 17:16 [SanderM19] | bouw_catalogus bijgevoegd rooms_data.py
+
+ rooms_data.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+-------
+794316d 2026-
+09-25 17:12 [SanderM19] | 3de kamer toegevoegd bij rooms_data.py
+
+ rooms_data.py | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+-------
+d4efb23 2026-
+09-25 16:35 [SanderM19] | 2de kamer bijgevoegd rooms_data.py
+
+ rooms_data.py | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+-------
+73f0c87 2026-
+09-25 15:34 [SanderM19] | rooms_data.py eerste puzzel toegevoegd
+
+ rooms_data.py | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+
+-------
+8a46a4c 2026-
+09-25 14:33 [SanderM19] | escapre_room.py toegevoegd met naam, thema en tijdslimiet
+
+ escape_room.py | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+-------
+cccc457 2026-
+09-25 10:30 [SanderM19] | puzzel.py toegevoegd
+
+ puzzel.py | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+-------
+73272aa 2026-
+09-25 09:59 [SanderM19] | alle .py bestanden aangemaakt + code voor hint.py
+
+ escape_room.py |  0
+ hint.py        | 17 +++++++++++++++++
+ main.py        |  0
+ puzzel.py      |  0
+ rooms_data.py  |  0
+ 5 files changed, 17 insertions(+)
