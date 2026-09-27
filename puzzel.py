@@ -1,4 +1,4 @@
-"""Puzzel-klasse voor de escape-roomstudio (week 1: basis catalogusinformatie)."""
+"""Puzzel-klasse voor de escape-roomstudio"""
 
 class Puzzel:
     """Een puzzel binnen een escape room met titel, opdracht, oplossing en hints."""

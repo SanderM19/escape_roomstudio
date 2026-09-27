@@ -1,4 +1,4 @@
-"""Herbruikbare puzzelloop voor een spelsessie (FR-3, FR-4, FR-5)."""
+"""Herbruikbare puzzelloop voor een spelsessie"""
 
 
 def speel_sessie(sessie):

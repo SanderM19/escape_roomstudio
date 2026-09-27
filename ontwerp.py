@@ -1,4 +1,4 @@
-"""Ontwerpmodus: een room met puzzels en hints samenstellen en valideren (FR-6)."""
+"""Ontwerpmodus: een room met puzzels en hints samenstellen en valideren"""
 
 from hint import Hint
 from puzzel import Puzzel

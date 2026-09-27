@@ -1,4 +1,4 @@
-"""Escape-roomstudio - hoofdapplicatie (week 3: alle must-haves)."""
+"""Escape-roomstudio - hoofdapplicatie"""
 
 from py_compile import main
 from rooms_data import bouw_catalogus
@@ -25,7 +25,7 @@ def kies_room(rooms):
 
 
 def toon_room_details(room):
-    """Toon naam, thema, tijdslimiet en de puzzels in speelvolgorde (FR-1).
+    """Toon naam, thema, tijdslimiet en de puzzels in speelvolgorde.
 
     Alleen veilige informatie: nooit de oplossing of de hintteksten.
     """
@@ -39,7 +39,7 @@ def toon_room_details(room):
 
 
 def catalogusmodus(rooms):
-    """Toon de catalogus en de veilige puzzeldetails van een gekozen room (FR-1)."""
+    """Toon de catalogus en de veilige puzzeldetails van een gekozen room."""
     print("\n=== CATALOGUS BEKIJKEN ===")
     toon_catalogus(rooms)
     room = kies_room(rooms)
@@ -55,7 +55,7 @@ def _rond_sessie_af(sessie, scorebord):
 
 
 def speelmodus(rooms, scorebord):
-    """Kies een room, speel de sessie en sla het resultaat op (FR-7)."""
+    """Kies een room, speel de sessie en sla het resultaat op. """
     print("\n=== SPEELMODUS ===")
     toon_catalogus(rooms)
     room = kies_room(rooms)
@@ -68,7 +68,7 @@ def speelmodus(rooms, scorebord):
 
 
 def ontwerpmodus(rooms, scorebord):
-    """Stel een room samen en bied optioneel een testsessie aan (FR-6)."""
+    """Stel een room samen en bied optioneel een testsessie aan."""
     room = ontwerp_room()
     rooms.append(room)
     testen = input("Wil je de nieuwe room direct testen? (j/n): ").strip().lower()
@@ -80,7 +80,7 @@ def ontwerpmodus(rooms, scorebord):
 
 
 def toon_scorebord(scorebord):
-    """Toon resultaten aflopend op score; bij gelijke score teamnaam A-Z (FR-8)."""
+    """Toon resultaten aflopend op score; bij gelijke score teamnaam A-Z."""
     print("\n=== SCOREBORD ===")
     if not scorebord:
         print("Nog geen resultaten beschikbaar.")
