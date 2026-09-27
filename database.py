@@ -56,3 +56,31 @@ def init_database(db_pad=DB_PAD):
     )
     conn.commit()
     conn.close()
+
+
+def bewaar_room(room, db_pad=DB_PAD):
+    """Sla een EscapeRoom met puzzels en hints op."""
+    conn = _verbinding(db_pad)
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO rooms (naam, thema, tijdslimiet) VALUES (?, ?, ?)",
+        (room.get_naam(), room.thema, room.tijdslimiet),
+    )
+    room_id = cur.lastrowid
+    for p_index, puzzel in enumerate(room.get_puzzels()):
+        cur.execute(
+            "INSERT INTO puzzels (room_id, volgorde, titel, opdracht, oplossing, max_punten) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (room_id, p_index, puzzel.titel, puzzel.opdracht,
+             puzzel.oplossing, puzzel.max_punten),
+        )
+        puzzel_id = cur.lastrowid
+        for h_index, hint in enumerate(puzzel.hint_lijst):
+            cur.execute(
+                "INSERT INTO hints (puzzel_id, volgorde, tekst, strafpunten) "
+                "VALUES (?, ?, ?, ?)",
+                (puzzel_id, h_index, hint.tekst, hint.strafpunten),
+            )
+    conn.commit()
+    conn.close()
+    return room_id
