@@ -6,6 +6,8 @@ from spelsessie import Spelsessie
 from speelloop import speel_sessie
 from ontwerp import ontwerp_room
 from score_resultaat import ScoreResultaat
+from rapport import genereer_spelrapport
+import database
 
 
 def toon_catalogus(rooms):
@@ -48,14 +50,20 @@ def catalogusmodus(rooms):
 
 
 def _rond_sessie_af(sessie, scorebord):
-    """Sla resultaat op in het scorebord."""
+    """Sla resultaat op (scorebord + database) en bied een PDF-rapport aan."""
     resultaat = ScoreResultaat(sessie.teamnaam, sessie.escape_room.get_naam(), sessie.score)
     scorebord.append(resultaat)
-    print("Resultaat toegevoegd aan het scorebord.")
+    database.bewaar_score(resultaat)
+    print("Resultaat toegevoegd aan het scorebord (en opgeslagen in de database).")
+
+    wil_rapport = input("Wil je een PDF-spelrapport genereren? (j/n): ").strip().lower()
+    if wil_rapport == "j":
+        pad = genereer_spelrapport(sessie)
+        print(f"PDF-spelrapport opgeslagen als: {pad}")
 
 
 def speelmodus(rooms, scorebord):
-    """Kies een room, speel de sessie en sla het resultaat op. """
+    """Kies een room, speel de sessie en sla het resultaat op."""
     print("\n=== SPEELMODUS ===")
     toon_catalogus(rooms)
     room = kies_room(rooms)
@@ -68,9 +76,11 @@ def speelmodus(rooms, scorebord):
 
 
 def ontwerpmodus(rooms, scorebord):
-    """Stel een room samen en bied optioneel een testsessie aan."""
+    """Stel een room samen, sla hem op en bied optioneel een testsessie aan."""
     room = ontwerp_room()
     rooms.append(room)
+    database.bewaar_room(room)
+    print("De nieuwe room is opgeslagen in de database.")
     testen = input("Wil je de nieuwe room direct testen? (j/n): ").strip().lower()
     if testen == "j":
         teamnaam = input("Testteamnaam: ").strip() or "Testteam"
@@ -99,10 +109,22 @@ def toon_hoofdmenu():
     print("5. Afsluiten")
 
 
+def _laad_of_seed_rooms():
+    """Laad rooms uit de database; vul de database met de standaardcatalogus als hij leeg is."""
+    database.init_database()
+    if not database.database_is_gevuld():
+        rooms = bouw_catalogus()
+        database.bewaar_alle_rooms(rooms)
+        print("Standaardcatalogus geladen en opgeslagen in de database.")
+        return rooms
+    print("Rooms geladen uit de database.")
+    return database.laad_rooms()
+
+
 def main():
     print("Welkom bij de Escape-roomstudio!")
-    rooms = bouw_catalogus()
-    scorebord = []
+    rooms = _laad_of_seed_rooms()
+    scorebord = database.laad_scores()
     while True:
         toon_hoofdmenu()
         keuze = input("Maak een keuze (1-5): ").strip()
