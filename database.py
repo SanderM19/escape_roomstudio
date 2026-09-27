@@ -84,3 +84,34 @@ def bewaar_room(room, db_pad=DB_PAD):
     conn.commit()
     conn.close()
     return room_id
+
+def bewaar_alle_rooms(rooms, db_pad=DB_PAD):
+    for room in rooms:
+        bewaar_room(room, db_pad)
+
+
+def laad_rooms(db_pad=DB_PAD):
+    """Laad alle rooms (met puzzels en hints) uit de database."""
+    conn = _verbinding(db_pad)
+    cur = conn.cursor()
+    rooms = []
+    cur.execute("SELECT id, naam, thema, tijdslimiet FROM rooms ORDER BY id")
+    for room_id, naam, thema, tijdslimiet in cur.fetchall():
+        room = EscapeRoom(naam, thema, tijdslimiet)
+        cur.execute(
+            "SELECT id, titel, opdracht, oplossing, max_punten FROM puzzels "
+            "WHERE room_id = ? ORDER BY volgorde",
+            (room_id,),
+        )
+        for puzzel_id, titel, opdracht, oplossing, max_punten in cur.fetchall():
+            puzzel = Puzzel(titel, opdracht, oplossing, max_punten)
+            cur.execute(
+                "SELECT tekst, strafpunten FROM hints WHERE puzzel_id = ? ORDER BY volgorde",
+                (puzzel_id,),
+            )
+            for tekst, strafpunten in cur.fetchall():
+                puzzel.voeg_hint_toe(Hint(tekst, strafpunten))
+            room.voeg_puzzel_toe(puzzel)
+        rooms.append(room)
+    conn.close()
+    return rooms
