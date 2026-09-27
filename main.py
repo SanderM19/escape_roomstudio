@@ -1,8 +1,11 @@
-"""Escape-roomstudio - hoofdapplicatie (week 1: alleen catalogusmodus)."""
+"""Escape-roomstudio - hoofdapplicatie (week 3: alle must-haves)."""
 
 from py_compile import main
 from rooms_data import bouw_catalogus
 from spelsessie import Spelsessie
+from speelloop import speel_sessie
+from ontwerp import ontwerp_room
+from score_resultaat import ScoreResultaat
 
 
 def toon_catalogus(rooms):
@@ -44,49 +47,16 @@ def catalogusmodus(rooms):
         toon_room_details(room)
 
 
-def speel_sessie(sessie):
-    """Doorloop alle puzzels van een sessie tot deze is afgerond (FR-2 t/m FR-5)."""
-    print(f"\nSpelsessie gestart voor team '{sessie.teamnaam}' "
-          f"in room '{sessie.escape_room.get_naam()}'.")
-
-    while not sessie.is_afgerond():
-        puzzel = sessie.get_huidige_puzzel()
-        nummer = sessie.huidige_puzzel_index + 1
-        totaal = sessie.escape_room.get_aantal_puzzels()
-        print("\n" + "=" * 45)
-        print(f"Puzzel {nummer}/{totaal}: {puzzel.get_titel()}")
-        print(f"Opdracht: {puzzel.opdracht}")
-        print(f"Voortgang: {sessie.get_voortgang_procent()}% | "
-              f"Huidige score: {sessie.score}")
-
-        actie = input("Kies een actie - [a]ntwoord geven / [h]int vragen: ").strip().lower()
-
-        if actie == "h":
-            hint = sessie.vraag_hint()
-            if hint is None:
-                print(">> Geen ongebruikte hint meer beschikbaar voor deze puzzel.")
-            else:
-                print(f">> Hint: {hint}")
-        elif actie == "a":
-            antwoord = input("Jouw antwoord: ")
-            if sessie.geef_antwoord(antwoord):
-                print(">> Correct! Door naar de volgende puzzel.")
-            else:
-                print(">> Helaas, dat is niet juist. Probeer het opnieuw.")
-        else:
-            print(">> Ongeldige actie. Kies 'a' of 'h'.")
-
-    print("\n" + "*" * 45)
-    print("Escape room afgerond!")
-    print(f"Team: {sessie.teamnaam}")
-    print(f"Eindscore: {sessie.score}")
-    print(f"Voortgang: {sessie.get_voortgang_procent()}%")
-    print("*" * 45)
+def _rond_sessie_af(sessie, scorebord):
+    """Sla resultaat op in het scorebord."""
+    resultaat = ScoreResultaat(sessie.teamnaam, sessie.escape_room.get_naam(), sessie.score)
+    scorebord.append(resultaat)
+    print("Resultaat toegevoegd aan het scorebord.")
 
 
-def speelmodus(rooms):
-    """Kies een room en speel een testsessie (FR-2 t/m FR-5)."""
-    print("\n=== ROOM SPELEN ===")
+def speelmodus(rooms, scorebord):
+    """Kies een room, speel de sessie en sla het resultaat op (FR-7)."""
+    print("\n=== SPEELMODUS ===")
     toon_catalogus(rooms)
     room = kies_room(rooms)
     if room is None:
@@ -94,30 +64,61 @@ def speelmodus(rooms):
     teamnaam = input("Voer jullie teamnaam in: ").strip() or "Naamloos team"
     sessie = Spelsessie(teamnaam, room)
     speel_sessie(sessie)
+    _rond_sessie_af(sessie, scorebord)
+
+
+def ontwerpmodus(rooms, scorebord):
+    """Stel een room samen en bied optioneel een testsessie aan (FR-6)."""
+    room = ontwerp_room()
+    rooms.append(room)
+    testen = input("Wil je de nieuwe room direct testen? (j/n): ").strip().lower()
+    if testen == "j":
+        teamnaam = input("Testteamnaam: ").strip() or "Testteam"
+        sessie = Spelsessie(teamnaam, room)
+        speel_sessie(sessie)
+        _rond_sessie_af(sessie, scorebord)
+
+
+def toon_scorebord(scorebord):
+    """Toon resultaten aflopend op score; bij gelijke score teamnaam A-Z (FR-8)."""
+    print("\n=== SCOREBORD ===")
+    if not scorebord:
+        print("Nog geen resultaten beschikbaar.")
+        return
+    gesorteerd = sorted(scorebord, key=lambda r: (-r.score, r.teamnaam.lower()))
+    for plaats, resultaat in enumerate(gesorteerd, start=1):
+        print(f"{plaats}. {resultaat}")
 
 
 def toon_hoofdmenu():
     print("\n========== ESCAPE-ROOMSTUDIO ==========")
     print("1. Catalogus bekijken")
-    print("2. Room spelen")
-    print("3. Afsluiten")
+    print("2. Room ontwerpen")
+    print("3. Room spelen")
+    print("4. Scorebord tonen")
+    print("5. Afsluiten")
 
 
 def main():
     print("Welkom bij de Escape-roomstudio!")
     rooms = bouw_catalogus()
+    scorebord = []
     while True:
         toon_hoofdmenu()
-        keuze = input("Maak een keuze (1-3): ").strip()
+        keuze = input("Maak een keuze (1-5): ").strip()
         if keuze == "1":
             catalogusmodus(rooms)
         elif keuze == "2":
-            speelmodus(rooms)
+            ontwerpmodus(rooms, scorebord)
         elif keuze == "3":
+            speelmodus(rooms, scorebord)
+        elif keuze == "4":
+            toon_scorebord(scorebord)
+        elif keuze == "5":
             print("Tot ziens!")
             break
         else:
-            print("Ongeldige keuze. Kies 1, 2 of 3.")
+            print("Ongeldige keuze. Kies 1, 2, 3, 4 of 5.")
 
 
 if __name__ == "__main__":
