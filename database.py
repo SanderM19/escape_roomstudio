@@ -85,6 +85,7 @@ def bewaar_room(room, db_pad=DB_PAD):
     conn.close()
     return room_id
 
+
 def bewaar_alle_rooms(rooms, db_pad=DB_PAD):
     for room in rooms:
         bewaar_room(room, db_pad)
@@ -115,3 +116,31 @@ def laad_rooms(db_pad=DB_PAD):
         rooms.append(room)
     conn.close()
     return rooms
+
+
+def bewaar_score(resultaat, db_pad=DB_PAD):
+    conn = _verbinding(db_pad)
+    conn.execute(
+        "INSERT INTO scores (teamnaam, roomnaam, score) VALUES (?, ?, ?)",
+        (resultaat.teamnaam, resultaat.roomnaam, resultaat.score),
+    )
+    conn.commit()
+    conn.close()
+
+
+def laad_scores(db_pad=DB_PAD):
+    conn = _verbinding(db_pad)
+    cur = conn.cursor()
+    cur.execute("SELECT teamnaam, roomnaam, score FROM scores")
+    resultaten = [ScoreResultaat(t, r, s) for t, r, s in cur.fetchall()]
+    conn.close()
+    return resultaten
+
+
+def database_is_gevuld(db_pad=DB_PAD):
+    conn = _verbinding(db_pad)
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM rooms")
+    aantal = cur.fetchone()[0]
+    conn.close()
+    return aantal > 0
